@@ -1,0 +1,17 @@
+# Build artifacts
+*.o
+*.bin
+*.elf
+*.hex
+*.map
+*.out
+
+# Symlink generated during build (board.h -> boards/<target>.h)
+board.h
+
+# Local tooling / editor
+firebase-debug.log
+*.code-workspace
+
+# OS / misc
+.DS_Store
