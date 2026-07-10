@@ -6,12 +6,12 @@ with the necessary header and linker .ld files.
 
 ## Build
 
-1. Install `stm32flash` and the `gcc-arm-none-eabi` toolchain.
+1. Install `stm32flash` and the `gcc-arm-none-eabi` toolchain. You may also need `stlink-tools` 
 
   On Debian, simply do the following:
 
    ```bash
-   sudo apt-get install stm32flash gcc-arm-none-eabi
+   sudo apt-get install stm32flash gcc-arm-none-eabi stlink-tools
    ```
 
 2. Clone this repository.
@@ -20,12 +20,12 @@ with the necessary header and linker .ld files.
    git clone --recurse-submodules https://github.com/leideno/stm32f4-vserprog
    ```
 
-This will also pull in the following submodules:
+  This will also pull in the following submodules:
 
-| Submodule     | URL                                      | Notes                          |
-|---------------|------------------------------------------|--------------------------------|
-| `libopencm3`  | https://github.com/libopencm3/libopencm3 | Tracks `master`; provides the `spi_init_master` / `spi_enable_pins` / `spi_reset` API this firmware uses. |
-| `flashrom`    | https://review.coreboot.org/flashrom     | Modern flashrom, used as the host-side tool. The firmware no longer includes flashrom headers (see `serprog.h` below). |
+  | Submodule     | URL                                      | Notes                          |
+  |---------------|------------------------------------------|--------------------------------|
+  | `libopencm3`  | https://github.com/libopencm3/libopencm3 | Tracks `master`; provides the `spi_init_master` / `spi_enable_pins` / `spi_reset` API this firmware uses. |
+  | `flashrom`    | https://review.coreboot.org/flashrom     | Modern flashrom, used as the host-side tool. The firmware no longer includes flashrom headers (see `serprog.h` below). |
 
 3. Build and flash the firmware for STM32F4
 
@@ -33,12 +33,7 @@ This will also pull in the following submodules:
    make
    make flash-stlink
    ```
-
-Flash (ST-Link):
-
-```sh
-make flash-stlink      # requires st-flash / stlink tooling on the PATH
-```
+   You can replace 'flash-stlink' with 'flash-dfu' or 'flash-uart' depending on your preferred firmware upload method.
 
 ## Host side (flashrom)
 
@@ -64,7 +59,7 @@ flashrom -p serprog:dev=/dev/ttyACM0:2000000
 and are not meant to be included externally), so the firmware carries a copy of
 the stable Serial Flasher Protocol constants plus the `BUS_SPI` bus-type bit.
 Keep `serprog.h` in sync with the protocol defined in
-`flashrom/programmers/serprog.c`.
+`flashrom/programmers/serprog.c`.'
 
 ## Board
 
