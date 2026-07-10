@@ -1,4 +1,5 @@
-# stm32-vserprog (STM32F401CE)
+# stm32-vserprog - A STM32F4 compatible update of the awesome stm32-vserprog by dword1511 (https://github.com/dword1511/stm32-vserprog.git)
+(tested on STM32F401CE but should work on similar F4 boards like the STM32F411CE)
 
 USB CDC-ACM serprog programmer firmware for the WeAct BlackPill
 (STM32F401CE) driving an SPI NOR flash (e.g. SK25P128) via flashrom.
