@@ -1,22 +1,38 @@
-# stm32-vserprog - A STM32F4 compatible update of the awesome stm32-vserprog by dword1511 (https://github.com/dword1511/stm32-vserprog.git)
-(tested on STM32F401CE but should work on similar F4 boards like the STM32F411CE)
+## stm32-vserprog ## 
+A STM32F4 fork of dword1511's 'stm32-vserprog' (https://github.com/dword1511/stm32-vserprog.git)
 
-USB CDC-ACM serprog programmer firmware for the WeAct BlackPill
-(STM32F401CE) driving an SPI NOR flash (e.g. SK25P128) via flashrom.
+This has been tested on a STM32F401CE, it should also work on similar F4 boards like the STM32F411CE
+with the necessary header and linker .ld files. 
 
 ## Build
 
-This repository uses two git submodules:
+1. Install `stm32flash` and the `gcc-arm-none-eabi` toolchain.
+
+  On Debian, simply do the following:
+
+   ```bash
+   sudo apt-get install stm32flash gcc-arm-none-eabi
+   ```
+
+2. Clone this repository.
+
+   ```bash
+   git clone --recurse-submodules https://github.com/leideno/stm32f4-vserprog
+   ```
+
+This will also pull in the following submodules:
 
 | Submodule     | URL                                      | Notes                          |
 |---------------|------------------------------------------|--------------------------------|
 | `libopencm3`  | https://github.com/libopencm3/libopencm3 | Tracks `master`; provides the `spi_init_master` / `spi_enable_pins` / `spi_reset` API this firmware uses. |
 | `flashrom`    | https://review.coreboot.org/flashrom     | Modern flashrom, used as the host-side tool. The firmware no longer includes flashrom headers (see `serprog.h` below). |
 
-```sh
-git submodule update --init
-make
-```
+3. Build and flash the firmware for STM32F4
+
+   ```bash
+   make
+   make flash-stlink
+   ```
 
 Flash (ST-Link):
 
